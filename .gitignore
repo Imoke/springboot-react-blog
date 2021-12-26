@@ -2,3 +2,5 @@ __pycache__
 .idea
 tuzixinwen-crawler
 tuzixinwen-web-mobile
+mysql
+logs
