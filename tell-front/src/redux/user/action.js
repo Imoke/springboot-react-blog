@@ -6,7 +6,8 @@ import {
     GET_USER,
     LOGIN,
     REGISTER,
-    LOGOUT
+    LOGOUT,
+    SSO
 } from './action-type';
 import Axios from "../../axios/axios";
 import {openNotificationWithIcon} from "../../componetns/notification";
@@ -29,6 +30,8 @@ const register = (data) => ({type: REGISTER, data: data});
 // 登录
 const login = (data) => ({type: LOGIN, data: data});
 
+// 登录
+const sso = (data) => ({type: SSO, data: data});
 // 登出
 export const logout = () => ({type: LOGOUT});
 
@@ -62,6 +65,13 @@ export const getUser = (data) => {
 export const loginAsync = (data) => {
     return dispatch => {
         fetchLogin(data,dispatch);
+    }
+}
+
+// 登录
+export const ssoAsync = (data) => {
+    return dispatch => {
+        fetchSso(data,dispatch);
     }
 }
 
@@ -162,6 +172,30 @@ function fetchLogin(data,dispatch) {
     })
 }
 
+function fetchSso(data,dispatch) {
+    Axios.post('/sso', {
+        username: data.username,
+        token: data.token,
+        page: data.page,
+        time: data.time
+    }).then(({data}) => {
+        if (data.code === 200) {
+            localStorage.setItem("token", data.detail.token);
+            localStorage.setItem("username", data.detail.username);
+            localStorage.setItem("avatar", data.detail.avatar);
+            Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail.token
+            dispatch(login(data.detail))
+        } else {
+            {
+                openNotificationWithIcon("error", "Error", data.description)
+            }
+        }
+    }).catch(error => {
+        {
+            openNotificationWithIcon("error", "Error", error.message)
+        }
+    })
+}
 // 注册
 function fetchRegister(data,dispatch) {
     Axios.post('/register', {

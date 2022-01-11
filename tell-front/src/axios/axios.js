@@ -8,7 +8,7 @@ import qs from 'qs';
  */
 const Axios = axios.create({
 	// 接口访问路径
-    baseURL: 'http://localhost:8080'
+    baseURL: 'http://192.168.1.63:8089'
 });
 
 Axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("token");

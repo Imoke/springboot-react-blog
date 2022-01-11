@@ -60,6 +60,12 @@ export function user(state = {
                 loginUsername: action.data.username,
                 loginAvatar: action.data.avatar
             }
+        case SSO:
+            return {
+                ...state,
+                loginUsername: action.data.username,
+                loginAvatar: action.data.avatar
+            }
         case REGISTER:
             return {
                 ...state,

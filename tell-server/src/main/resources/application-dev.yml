@@ -3,5 +3,5 @@ spring:
     #  数据源基本配置（请换成你自己的）
     username: root
     password: root
-    url: jdbc:mysql://10.211.55.28:3306/tell?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/tell?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.jdbc.Driver

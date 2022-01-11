@@ -15,7 +15,7 @@ import About from './componetns/about/index';
 import NotFound from './componetns/error/notFound';
 import Create from './componetns/article/create7';
 import Settings from './componetns/user/settings';
-
+import Sso from './componetns/sso/index';
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
@@ -29,6 +29,7 @@ ReactDOM.render(
                 <DefaultLayout path='/settings' component={Settings} />
                 <DefaultLayout path='/about' component={About} />
                 <DefaultLayout path='/create' component={Create} />
+                <DefaultLayout path='/sso' component={Sso} />
                 <DefaultLayout component={NotFound} />
             </Switch>
         </BrowserRouter>

@@ -101,4 +101,18 @@ public class IndexController {
         map.put("token",accessToken.getToken());
         return Result.success(map);
     }
+
+    @GetMapping(value = "/ssologin")
+    public Result ssologin(@RequestParam String token, @RequestParam String username,
+    @RequestParam String page,@RequestParam String time){
+        
+        User user = userService.findUserByName(username);
+        ApiAssert.notNull(user, "用户不存在");
+        AccessToken accessToken = accessTokenService.getByUserId(user.getUserId());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username",user.getUsername());
+        map.put("avatar",user.getAvatar());
+        map.put("token",accessToken.getToken());
+        return Result.success(map);
+    }
 }
