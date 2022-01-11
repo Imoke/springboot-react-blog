@@ -71,7 +71,7 @@ export const loginAsync = (data) => {
 // 登录
 export const ssoAsync = (data) => {
     return dispatch => {
-        fetchSso(data,dispatch);
+        fetchSso(data.url, data.token,data.time,data.username, data.page,dispatch);
     }
 }
 
@@ -172,19 +172,21 @@ function fetchLogin(data,dispatch) {
     })
 }
 
-function fetchSso(data,dispatch) {
-    Axios.post('/sso', {
-        username: data.username,
-        token: data.token,
-        page: data.page,
-        time: data.time
+function fetchSso(url,token,time,username,page,dispatch) {
+    Axios.get(url,{
+        params: {
+            token: token,
+            time: time,
+            username: username,
+            page: page
+        }
     }).then(({data}) => {
         if (data.code === 200) {
             localStorage.setItem("token", data.detail.token);
             localStorage.setItem("username", data.detail.username);
             localStorage.setItem("avatar", data.detail.avatar);
             Axios.defaults.headers.common['Authorization'] = "Bearer " + data.detail.token
-            dispatch(login(data.detail))
+            dispatch(sso(data.detail))
         } else {
             {
                 openNotificationWithIcon("error", "Error", data.description)

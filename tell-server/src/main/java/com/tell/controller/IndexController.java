@@ -102,7 +102,7 @@ public class IndexController {
         return Result.success(map);
     }
 
-    @GetMapping(value = "/ssologin")
+    @GetMapping(value = "/sso")
     public Result ssologin(@RequestParam String token, @RequestParam String username,
     @RequestParam String page,@RequestParam String time){
         

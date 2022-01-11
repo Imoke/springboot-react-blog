@@ -27,4 +27,4 @@ export const REGISTER = 'REGISTER';
 //登出
 export const LOGOUT = 'LOGOUT';
 //登录
-export const LOGIN = 'SSO';
+export const SSO = 'SSO';

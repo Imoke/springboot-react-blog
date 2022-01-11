@@ -6,7 +6,8 @@ import {
     GET_USER,
     LOGIN,
     REGISTER,
-    LOGOUT
+    LOGOUT,
+    SSO
 } from './action-type';
 
 export function user(state = {
